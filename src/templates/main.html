@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="{{static_url("main.css")}}" title="style"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js">
+  </script>  
+  <script type="text/javascript">
+      function search(){
+
+        var sway = $("searchway").value;
+        var form = $("searchform")
+        var sourceword = $("source").value;
+        var destword = $("dest").value;
+
+        new Ajax.Request('/search',{
+          method:'post',
+          parameters:{"source":sourceword, "dest":destword, "sway":sway},
+          onSuccess:function(data){
+            var jsonlist = data.responseText.evalJSON(true);
+            var rp = jsonlist["rp"];
+            var rn = jsonlist["rn"];
+            var rt = jsonlist["rt"];
+            var ri = jsonlist["ri"];
+            var element = $("option");
+            var pp = document.createElement('p');
+            pp.update(rp);
+            var pn = document.createElement('p');
+            pn.update(rn);
+            var pt = document.createElement('p');
+            pt.update(rt);
+            var pi = document.createElement('img');
+            var url = "static/"+ ri ;           
+            pi.src = url;
+            element.appendChild(pp);
+            element.appendChild(pn);
+            element.appendChild(pt);
+            element.appendChild(pi);
+
+          },
+          
+          });
+
+      }
+  </script>
+
+	<title>Wiki-search</title>
+</head>
+<body>
+  {%autoescape None%}
+  <div id = "content">
+    <h1>Wiki-search</h1>
+    <form id="searchform" method="">
+     出发词条
+     <input type="text" id = "source" name="source">
+     结束词条
+     <input type="text" id = "dest" name="dest">
+      
+    </form>
+    <button id="submit" onclick = "search()">搜索</button>
+     <fieldset>
+        <legend>选择搜索方法</legend>
+        <select id="searchway">
+          <option value="1" selected="selected">双向搜索</option>  
+          <option value="2">双向启发式搜索</option>
+          <option value="3">启发式搜索</option>
+          <option value="4">爬山式搜素</option>
+        </select>
+      </fieldset>
+    <div id="option">
+      <p>注：因词库限制，请查询在本词库中包含的词，部分可选词如下（词库大小:60000）</p>
+      <p>
+      {% for item in vac%}
+          {{item}}
+      {% end %}
+     </p>
+     
+    </div>
+   
+  </div>
+
+</body>
+</html>
