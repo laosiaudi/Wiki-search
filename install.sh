@@ -2,9 +2,10 @@
 # AUTHOR:   LaoSi
 # FILE:     install.sh
 # 2013 @laosiaudi All rights reserved
-# CREATED:  2013-12-29 00:24:15
-# MODIFIED: 2013-12-29 00:30:18
+# CREATED:  2013-12-29 21:46:25
+# MODIFIED: 2013-12-29 21:48:38
 
-sudo pip install networkx
 sudo apt-get install python-matplotlib
+sudo pip install networkx
 sudo pip install Tkinter
+

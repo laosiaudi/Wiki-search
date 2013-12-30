@@ -36,10 +36,10 @@ class App:
 
         self.OptionBox = Listbox(frame_1, selectmode = SINGLE, height = '10'
                 , width = '12', selectbackground = 'green')
-        self.OptionBox.insert(1, 'MountainSearch')
-        self.OptionBox.insert(2, 'Bidirection')
-        self.OptionBox.insert(3, 'HeuristicSearch')
-        self.OptionBox.insert(4, 'HeBidirection')
+        self.OptionBox.insert(1, '启发式迭代深度搜索')
+        self.OptionBox.insert(2, '双向广度搜索')
+        self.OptionBox.insert(3, '启发式搜索')
+        self.OptionBox.insert(4, '双向启发式搜索')
         self.OptionBox.pack(side = LEFT)
         
 

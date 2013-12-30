@@ -77,6 +77,7 @@ class MC_search():
             self.path.append(end)
             self.graph.add_node(end.decode('utf-8'))
             self.graph.add_edge(cur.decode('utf-8'),end.decode('utf-8'))
+            self.has_been.append(end)
             return True
         if self.outlinks.has_key(cur)==False:
             return False
@@ -118,15 +119,15 @@ class MC_search():
     def Draw(self):
         color = {}
         for item in self.has_been:
-            if not item in self.path:
-                color[item.decode('utf-8')] = 'red'
-            else:
+            if   item in self.path:
                 color[item.decode('utf-8')] = 'green'
-        values = [color.get(node,'green') for node in self.graph.nodes() ]
+            else:
+                color[item.decode('utf-8')] = 'red'
+        values = [color.get(node,'red') for node in self.graph.nodes() ]
         if len(self.has_been) > 500:
-            nx.draw_networkx(self.graph,font_family = 'SimHei',node_size=50,color=values, font_size = 5)
+            nx.draw_networkx(self.graph,font_family = 'SimHei',node_size=50,node_color=values, font_size = 5)
         else:
-            nx.draw_networkx(self.graph,font_family = 'SimHei',node_size=1000,color=values, font_size = 10)
+            nx.draw_networkx(self.graph,font_family = 'SimHei',node_size=1000,node_color=values, font_size = 10)
         plt.savefig('Mo_Search.png')
         plt.close()
 
