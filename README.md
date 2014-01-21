@@ -5,9 +5,9 @@ AI Curriculum Project
   
   
 Dependency:  
-1.networkx  
-2.matplotlib  
-3.Tkinter  
+1.`networkx`  
+2.`matplotlib`  
+3.`Tkinter`  
 
 **Screenshots**  
   ![github screen1](/images/screen1.png)  
